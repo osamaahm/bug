@@ -1,6 +1,32 @@
-<html><body><iframe id = "iframe0"  ></iframe></body>
+<html>
+<body>
 <script>
-var iframe0 = document.getElementById("iframe0");
-iframe0.src = "iframe0.html";
-setTimeout(function(){location.reload()},1200);
-</script></html>
+function main()
+{
+webkitRequestFileSystem(TEMPORARY, 0x8000, callback, error_callback);
+}
+function callback(fs)
+{
+fs.root.getFile("aa", {create: true}, callback2, error_callback);
+}
+function callback2(opt)
+{
+	main();
+	opt.createWriter(callback3, error_callback);
+}
+
+function callback3(fw)
+{
+fw.truncate(0);
+fw.onwrite = function()
+{
+fw.write(new Blob(["aa"]));
+};
+}
+function error_callback(opt)
+{
+}
+main();
+</script>
+</body>
+</html>
