@@ -1,6 +1,21 @@
-<html><body><iframe id = "iframe0"  ></iframe></body>
-<script>
-var iframe0 = document.getElementById("iframe0");
-iframe0.src = "iframe0.html";
-setTimeout(function(){location.reload()},1200);
-</script></htmSSSl>
+<html>
+  
+  <body>
+    <script>
+        const audioContentType = 'audio/webm; codecs="opus"';
+
+        options = [
+            {
+              initDataTypes: ["cenc"],
+              audioCapabilities: [{contentType: audioContentType}],
+            }
+        ];
+        var key_system = "com.widevine.alpha";
+		ensurePromise = navigator.requestMediaKeySystemAccess(key_system, options)
+			.then(function(keySystemAccess) {
+                    keySystemAccess.createMediaKeys();
+                    delete keySystemAccess;
+			}, console.log(name + " Failed to request key system access."));
+    </script>
+  </body>
+</html>
